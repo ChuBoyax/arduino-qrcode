@@ -32,13 +32,13 @@
     <script>
         $(document).ready(function() {
             setInterval(async () => {
-                const res = await fetch('/api/scan-result');.
+                const res = await fetch('/api/scan-result');
                 const data = await res.json();
 
                 if(!data) return;
 
-                if(data.status == 'success') {
-                    console.log('New scan data received:', data.data);
+                if(data.status == 'succes') {
+                    console.log('New scan data received:', data);
                 }
 
                 if(data.status == 'error') {
