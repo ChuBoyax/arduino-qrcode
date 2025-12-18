@@ -41,17 +41,17 @@ class StudentQrTokenController extends Controller
                 'verify' => false
             ])->get('https://api-portal.mlgcl.edu.ph/api/external/qr-code/user/' . $qrtoken);
 
-            // if(!$response->successful()) {
-            //     return response()->json([
-            //         'status' => 'error',
-            //         'message' => 'Failed to fetch data'
-            //     ], 500);
-            // }
+            if(!$response->successful()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Failed to fetch data'
+                ], 500);
+            }
     
             return response()->json([
                 'status' => 'success',
                 'qr_data' => $qrtoken,
-                'data' => 'https://api-portal.mlgcl.edu.ph/api/external/qr-code/user/' . $qrtoken
+                'data' => $response->json()
             ], 200);
         }catch(Exception $e) {
             return response()->json([

@@ -165,9 +165,8 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Image</th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody id="qrTableBody">
@@ -217,13 +216,12 @@
         .then(function(data) {
             var tbody = document.getElementById("qrTableBody");
             tbody.innerHTML = "";
-            data.forEach(function(student, index) {
+            data.forEach(function(user, index) {
                 tbody.innerHTML += 
                     "<tr>" +
                         "<td data-label='#'>" + (index + 1) + "</td>" +
-                        "<td data-label='Image'>" + `<img style="height: 30px; width: 30px; border-radius: 30px" src="${student.image_url}" />` + "</td>" +
-                        "<td data-label='Lirst Name'>" + student.last_name + "</td>" +
-                        "<td data-label='First Name'>" + student.first_name + "</td>" +
+                        "<td data-label='Name'>" + user.name + "</td>" +
+                        "<td data-label='Email'>" + user.email + "</td>" +
                     "</tr>";
             });
         })

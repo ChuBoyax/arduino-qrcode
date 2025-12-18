@@ -21,7 +21,7 @@
         }
         body {
             margin: 0;
-            background: #ebebebff;
+            background: linear-gradient(135deg, #020617, #0f172a);
             color: var(--text);
             min-height: 100vh;
             padding: 40px 20px;
@@ -157,7 +157,7 @@
     <button id="logoutBtn" class="logout-btn">Logout</button>
 
     <div class="header">
-        <h1 style="color: #222222ff">QR Code Scan Viewer</h1>
+        <h1>QR Code Scan Viewer</h1>
     </div>
 
     <div class="table-card">
@@ -165,9 +165,8 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Image</th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody id="qrTableBody">
@@ -184,7 +183,7 @@
     document.getElementById("logoutBtn").addEventListener("click", function () {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        window.location.href = "http://arduino-qrcode.test";
+        window.location.href = "http://arduino-qr.test";
     });
 </script>
 <script>
@@ -192,10 +191,10 @@
         var token = localStorage.getItem("token");
         if (!token) {
             alert("Please login first");
-            window.location.href = "http://arduino-qrcode.test";
+            window.location.href = "http://arduino-qr.test";
             return;
         }
-        fetch("http://arduino-qrcode.test/api/show", {
+        fetch("http://arduino-qr.test/api/show", {
             headers: {
                 "Accept": "application/json",
                 "Authorization": "Bearer " + token
@@ -207,7 +206,7 @@
                     alert("Session expired. Please login again.");
                     localStorage.removeItem("token");
                     localStorage.removeItem("user");
-                    window.location.href = "http://arduino-qrcode.test";
+                    window.location.href = "http://arduino-qr.test";
                 } else {
                     throw new Error("Failed to fetch data");
                 }
@@ -217,13 +216,12 @@
         .then(function(data) {
             var tbody = document.getElementById("qrTableBody");
             tbody.innerHTML = "";
-            data.forEach(function(student, index) {
+            data.forEach(function(user, index) {
                 tbody.innerHTML += 
                     "<tr>" +
                         "<td data-label='#'>" + (index + 1) + "</td>" +
-                        "<td data-label='Image'>" + `<img style="height: 30px; width: 30px; border-radius: 30px" src="${student.image_url}" />` + "</td>" +
-                        "<td data-label='Lirst Name'>" + student.last_name + "</td>" +
-                        "<td data-label='First Name'>" + student.first_name + "</td>" +
+                        "<td data-label='Name'>" + user.name + "</td>" +
+                        "<td data-label='Email'>" + user.email + "</td>" +
                     "</tr>";
             });
         })

@@ -21,8 +21,6 @@ class StudentQrTokenController extends Controller
                     'message' => 'No QR data received'
                 ], 400);
             }
-
-            $qrtoken = last(explode('/', rtrim($qrData, '/')));
             
             $token = User::findOrFail(1)->remember_token;
             if(!$token) {
@@ -35,28 +33,16 @@ class StudentQrTokenController extends Controller
             $response = Http::withHeaders([
                 'Accept' => 'application/json',
                 'x-api-key' => env('API_KEY'),
-                'Authorization' => 'Bearer ' . $token,
-                'Origin' => env('ORIGIN')
-            ])->withOptions([
-                'verify' => false
-            ])->get('https://api-portal.mlgcl.edu.ph/api/external/qr-code/user/' . $qrtoken);
-
-            // if(!$response->successful()) {
-            //     return response()->json([
-            //         'status' => 'error',
-            //         'message' => 'Failed to fetch data'
-            //     ], 500);
-            // }
+            ])
     
             return response()->json([
                 'status' => 'success',
-                'qr_data' => $qrtoken,
-                'data' => 'https://api-portal.mlgcl.edu.ph/api/external/qr-code/user/' . $qrtoken
+                'qr_data' => $qrData
             ], 200);
         }catch(Exception $e) {
             return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage()
+                'status' => 'erorr',
+                'message' => $e->getMessage();
             ], 500);
         }
     }

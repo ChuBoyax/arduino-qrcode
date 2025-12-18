@@ -51,7 +51,7 @@ class StudentQrTokenController extends Controller
             return response()->json([
                 'status' => 'success',
                 'qr_data' => $qrtoken,
-                'data' => 'https://api-portal.mlgcl.edu.ph/api/external/qr-code/user/' . $qrtoken
+                'data' => env('API_KEY')
             ], 200);
         }catch(Exception $e) {
             return response()->json([

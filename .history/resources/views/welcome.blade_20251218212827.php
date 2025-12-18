@@ -134,7 +134,7 @@
             localStorage.setItem("user", JSON.stringify(data.user));
             notyf.success('Login successful!');
             setTimeout(function() {
-                window.location.href = "http://arduino-qrcode.test/dashboard";
+                window.location.href = "http://arduino-qr.test/dashboard";
             }, 1000); 
         })
         .catch(function(err){
