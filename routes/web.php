@@ -6,6 +6,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/scan', function() {
-    return view('scan');
-})->name('scan');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
