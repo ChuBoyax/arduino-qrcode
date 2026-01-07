@@ -175,6 +175,9 @@
         </table>
     </div>
 
+    <div class="footer">
+        View-only interface • Real-time data from Arduino QR Scanner
+    </div>
 </div>
 
 <script>
@@ -214,7 +217,7 @@
         .then(function(data) {
             var tbody = document.getElementById("qrTableBody");
             tbody.innerHTML = "";
-            data.data.forEach(function(student, index) {
+            data.forEach(function(student, index) {
                 tbody.innerHTML += 
                     "<tr>" +
                         "<td data-label='#'>" + (index + 1) + "</td>" +
@@ -230,10 +233,6 @@
         });
     }
     window.addEventListener("DOMContentLoaded", loadUserData);
-
-    setInterval(() => {
-       loadUserData() 
-    }, 1000);
 </script>
 </body>
 </html>

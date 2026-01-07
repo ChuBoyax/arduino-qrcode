@@ -175,6 +175,9 @@
         </table>
     </div>
 
+    <div class="footer">
+        View-only interface • Real-time data from Arduino QR Scanner
+    </div>
 </div>
 
 <script>
@@ -226,14 +229,10 @@
         })
         .catch(function(err) {
             console.error(err);
-            alert("Failed to load user data");
+            alert(data);
         });
     }
     window.addEventListener("DOMContentLoaded", loadUserData);
-
-    setInterval(() => {
-       loadUserData() 
-    }, 1000);
 </script>
 </body>
 </html>

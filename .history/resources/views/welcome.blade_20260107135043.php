@@ -99,7 +99,7 @@
         </form>
 
     </div>
-    </body>
+</body
 </html>
 <script>
     var notyf = new Notyf({

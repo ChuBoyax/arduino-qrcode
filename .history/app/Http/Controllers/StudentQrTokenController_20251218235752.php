@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-use App\Models\Student;
+use App\Models\StudentQrToken;
 use App\Models\User;
 use Exception;
 
@@ -49,9 +49,9 @@ class StudentQrTokenController extends Controller
 
             $studentData = $response->json();
             Student::create([
+                'image_url'  => $studentData['data']['image'] ?? null,
                 'first_name' => $studentData['data']['firstname'] ?? null,
                 'last_name'  => $studentData['data']['lastname'] ?? null,
-                'image_url'  => $studentData['data']['image'] ?? null,
             ]);
     
             return response()->json([

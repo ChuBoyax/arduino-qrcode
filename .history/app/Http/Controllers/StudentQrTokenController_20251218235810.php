@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-use App\Models\Student;
+use App\Models\StudentQrToken;
 use App\Models\User;
 use Exception;
 

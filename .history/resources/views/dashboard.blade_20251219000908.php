@@ -175,6 +175,9 @@
         </table>
     </div>
 
+    <div class="footer">
+        View-only interface • Real-time data from Arduino QR Scanner
+    </div>
 </div>
 
 <script>

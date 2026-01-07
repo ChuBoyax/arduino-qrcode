@@ -175,6 +175,9 @@
         </table>
     </div>
 
+    <div class="footer">
+        View-only interface • Real-time data from Arduino QR Scanner
+    </div>
 </div>
 
 <script>
@@ -198,23 +201,10 @@
                 "Authorization": "Bearer " + token
             }
         })
-        .then(function(res) {
-            if (!res.ok) {
-                if (res.status === 401) {
-                    alert("Session expired. Please login again.");
-                    localStorage.removeItem("token");
-                    localStorage.removeItem("user");
-                    window.location.href = "http://arduino-qrcode.test";
-                } else {
-                    throw new Error("Failed to fetch data");
-                }
-            }
-            return res.json();
-        })
         .then(function(data) {
             var tbody = document.getElementById("qrTableBody");
             tbody.innerHTML = "";
-            data.data.forEach(function(student, index) {
+            data.forEach(function(student, index) {
                 tbody.innerHTML += 
                     "<tr>" +
                         "<td data-label='#'>" + (index + 1) + "</td>" +
@@ -230,10 +220,6 @@
         });
     }
     window.addEventListener("DOMContentLoaded", loadUserData);
-
-    setInterval(() => {
-       loadUserData() 
-    }, 1000);
 </script>
 </body>
 </html>
